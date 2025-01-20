@@ -6,6 +6,7 @@ import { stickyHeader } from "./parts/header.js";
 // import { playVideoAction } from "./parts/video.js";
 // import { range } from "./parts/range.js";
 
+import "./parts/animations.js";
 // import "./parts/forms.js";
 // import "./parts/sliders.js";
 // import "./parts/popup.js";

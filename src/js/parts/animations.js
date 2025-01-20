@@ -127,38 +127,3 @@ export const animateSVGStaggerAction = () => {
         observerSVGStagger.observe(elem);
     })
 }
-
-
-
-function animateLogo(logo) {
-    const paths = logo.querySelectorAll('path');
-    if (!paths.length) return;
-
-    gsap.to(paths, {
-        opacity: 1,
-        y: 0,
-        duration: 0.3,
-        stagger: 0.1,
-        ease: 'ease'
-    });
-}
-
-const style = document.createElement('style');
-style.textContent = css;
-document.head.appendChild(style);
-
-document.body.innerHTML = '<div id="drop"></div>';
-
-// JavaScript с GSAP для медленного движения линии вниз
-const drop = document.querySelector("#drop");
-
-// Получаем общую высоту страницы
-const totalHeight = document.body.scrollHeight;
-
-// Анимация линии: медленное движение вниз и увеличение высоты
-gsap.to(drop, {
-    top: totalHeight - window.innerHeight, // Линия движется до конца страницы
-    height: totalHeight, // Увеличиваем высоту линии до полной высоты страницы
-    duration: 30, // Длительность анимации в секундах
-    ease: "linear", // Равномерное движение
-});

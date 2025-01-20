@@ -1,0 +1,42 @@
+.grid {
+    display: grid;
+
+    ._column-2 {
+        @media (min-width:769px) {
+            grid-column: span 2;
+        }
+    }
+
+    // .grid-2
+
+    &-2 {
+        gap: 60px 15px;
+        grid-template-columns: repeat(2, 1fr);
+
+        @media (max-width: 768px) {
+            grid-template-columns: 1fr;
+            gap: 30px;
+        }
+
+        a {
+            display: block;
+        }
+    }
+
+    // .grid-3
+
+    &-3 {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 60px 15px;
+
+        @media (max-width: 1024px) {
+            gap: 45px 10px;
+        }
+
+        @media (max-width: 768px) {
+            gap: 30px;
+            grid-template-columns: 1fr;
+        }
+    }
+
+}

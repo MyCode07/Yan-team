@@ -1,0 +1,124 @@
+@@include('./html/head.html', {
+"title":"О нас",
+})
+
+@@include('./html/header.html', {
+"class":"",
+})
+
+<main class="about-page">
+
+    <section class="section hero">
+        <div class="section__container _container">
+            <div class="section__body">
+                <div class="hero__top">
+                    <h1>Мы — команда, объединённая общими ценностями и стремлением к высокому качеству.
+                        Каждый из нас приносит уникальные знания и опыт, работая в едином ритме для достижения лучших
+                        результатов.
+                        Вместе мы создаём решения, которые соответствуют самым высоким стандартам и помогают нашим
+                        клиентам достигать их целей.</h1>
+                    <p>Создаём понятные, функциональные и стильные решения, продумывая каждый проект так, чтобы он
+                        оставлял заметный и положительный результат.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section socials">
+        <div class="section__bgi">
+            <img src="img/7.png" alt="">
+        </div>
+        <div class="section__container _container">
+            <div class="section__body">
+                <a href=""><img src="img/icons/bh.svg" alt=""></a>
+                <a href=""><img src="img/icons/dp-white.svg" alt=""></a>
+                <a href=""><img src="img/icons/vk.svg" alt=""></a>
+            </div>
+        </div>
+    </section>
+
+    <section class="section experience">
+        <div class="section__container _container">
+            <div class="section__body">
+                <div class="section__title">
+                    <label>Гарантия</label>
+                    <h2>Гарантируем надежное выполнение наших обязательств по договору, предоставляя вам полностью
+                        готовый продукт, который соответствует вашим ожиданиям.</h2>
+                </div>
+                <ol class="_centered">
+                    <li>
+                        <label>Опыт:</label>
+                        <div>
+                            <p>4</p>
+                            <span>+</span>
+                        </div>
+                        <label></label>
+                    </li>
+                    <li>
+                        <label>Проекты:</label>
+                        <div>
+                            <p>50</p>
+                            <span>+</span>
+                        </div>
+                        <label></label>
+                    </li>
+                </ol>
+
+                <a href="" class="_btn _btn-stroke">проекты</a>
+
+            </div>
+        </div>
+    </section>
+
+    <section class="section awards about-awards">
+        <div class="section__container _container">
+            <div class="section__body">
+                <div class="section__title">
+                    <label>Награды</label>
+                    <h2>Наша цель — качественный продукт и долгосрочное сотрудничество.</h2>
+                </div>
+                <div class="awards__top">
+                    <div>
+                        <img class="platform" src="img/icons/dp.svg" alt="">
+                    </div>
+                    <span>8</span>
+                    <div>
+                        <img class="award" src="img/icons/aww-2.svg" alt="">
+                    </div>
+                </div>
+                <div class="awards__data">
+                    <span>Проект</span>
+                    <span>Награда</span>
+                    <span>Дата</span>
+                </div>
+                <ul>
+                    <li>
+                        <a href="" target="_blank">
+                            <p>Mech</p>
+                            <p>Dprofile рекомендует</p>
+                            <p>25.02.2024</p>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="" target="_blank">
+                            <p>Mech</p>
+                            <p>Dprofile рекомендует</p>
+                            <p>25.02.2024</p>
+                        </a>
+                    </li>
+
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    @@include('./html/parts/clients.html', {
+        "class":"about-clients",
+    })
+        
+</main>
+
+@@include('./html/footer.html', {
+    "class":"about-footer",
+})
+@@include('./html/scripts.html')

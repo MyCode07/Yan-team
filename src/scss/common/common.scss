@@ -1,0 +1,247 @@
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    scroll-behavior: smooth;
+    font-family: "HelveticaNeue";
+    font-style: normal;
+    line-height: normal;
+    font-weight: 400;
+    color: $black;
+    @include adaptive-value("font-size", 16, 14, 1);
+
+    @media (min-width:769px) {
+        letter-spacing: -0.3px;
+    }
+}
+
+.wrapper {
+    position: relative;
+    min-height: 100%;
+    scroll-behavior: smooth;
+    overflow-x: clip;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+main {
+    position: relative;
+    flex: 1 1 auto;
+}
+
+.about-page {
+    background-color: $gray;
+    color: $text-gray;
+}
+
+._container {
+    width: 100%;
+    margin-inline: auto;
+    max-width: $container + px;
+
+    @media (max-width: $containerWithPadding + px) {
+        max-width: none;
+        padding-inline: $padding + px;
+    }
+
+    @media (max-width: 1440px) {
+        padding-inline: 15px;
+    }
+
+    @media (max-width: 1024px) {
+        padding-inline: 10px;
+    }
+}
+
+img,
+svg,
+picture,
+figure {
+    max-width: 100%;
+    height: auto;
+}
+
+h1 {
+    text-align: center;
+    font-family: "timesnewromanpsmt";
+    @include adaptive-value('font-size', 35, 24, 1);
+    font-style: normal;
+    font-weight: 400;
+    line-height: 100%;
+    letter-spacing: -1px;
+}
+
+h2 {
+    text-align: center;
+    font-family: "timesnewromanpsmt";
+    @include adaptive-value('font-size', 42, 18, 1);
+    font-style: normal;
+    font-weight: 400;
+    line-height: 100%;
+    letter-spacing: -0.3;
+}
+
+h3 {
+    font-size: 18px;
+    font-weight: 400;
+    letter-spacing: -0.3;
+
+    @media (max-width:768px) {
+        font-size: 14px;
+    }
+}
+
+h2,
+h3,
+h4,
+h5,
+h6 {}
+
+p {
+    font-size: 16px;
+    letter-spacing: -0.03px;
+    line-height: 1.2;
+
+    @media (max-width: 1024px) {
+        font-size: 14px;
+        line-height: 1.1;
+    }
+}
+
+
+._btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    width: fit-content;
+
+    font-style: normal;
+    font-weight: 400;
+    line-height: 100%;
+    letter-spacing: -0.3px;
+    border-radius: 200px;
+
+
+    // ._btn-stroke
+
+    &-stroke {
+        font-family: "timesnewromanpsmt";
+        font-size: 14px;
+        border: 1px solid $stroke;
+        text-transform: uppercase;
+        padding: 20px 40px;
+        transition: all 0.3s ease 0s;
+
+        @media (any-hover: hover) {
+            &:hover {
+                background-color: $black;
+                color: $white;
+            }
+
+        }
+
+        @media (max-width:768px) {
+            font-size: 12px;
+            padding: 15px 30px;
+
+        }
+
+    }
+
+    // ._btn-fill
+
+    &-fill {
+        background-color: $black;
+        padding: 15px 20px;
+        color: $white;
+
+        transition: all 0.3s ease 0s;
+
+        @media (any-hover: hover) {
+            &:hover {
+                background-color: $gray;
+                color: $black;
+            }
+
+        }
+
+        @media (max-width:768px) {
+            font-size: 14px;
+            padding: 10px 15px;
+        }
+    }
+}
+
+.text-box {
+    position: relative;
+    @include adaptive-value("margin-bottom", 150, 50, 1);
+    @include adaptive-value("padding-top", 100, 50, 1);
+    @include adaptive-value("padding-bottom", 100, 50, 1);
+
+    &:after {
+        position: absolute;
+        content: "";
+        left: 50%;
+        top: 0;
+        transform: translate(-50%, 0);
+        height: 100%;
+        width: 100vw;
+        z-index: -1;
+    }
+
+    .big-text {
+        color: $white;
+        font-weight: 500;
+        @include adaptive-value("font-size", 50, 18, 1);
+        line-height: 1;
+    }
+}
+
+._centered {
+    li {
+        display: flex;
+        justify-content: space-between;
+        padding: 15px 0;
+        border-top: 1px solid rgba($color: $stroke, $alpha: 0.2);
+
+        &:last-child {
+            border-bottom: 1px solid rgba($color: $stroke, $alpha: 0.2);
+        }
+
+        @media (max-width:768px) {
+            padding: 10px 0;
+        }
+
+        label {
+            width: 100%;
+            flex: 1 1 auto;
+
+            @media (max-width:768px) {
+                font-size: 12px;
+            }
+        }
+
+        div {
+            display: flex;
+            justify-content: center;
+            gap: 0;
+            flex: 1 1 auto;
+            width: 100%;
+
+            p {
+                @include adaptive-value('font-size', 160, 120, 1);
+                font-style: normal;
+                font-weight: 400;
+                line-height: 0.8;
+                text-align: center;
+                color: #DEE1E6;
+            }
+
+            span {}
+        }
+    }
+}

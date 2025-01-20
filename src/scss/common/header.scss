@@ -1,0 +1,206 @@
+.header {
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100%;
+    z-index: 10;
+    transition: background-color 0.3s ease 0s;
+
+    &._fixed,
+    &._sticky {
+
+        // * {
+        //     color: $white;
+        // }
+
+        // svg {
+        //     fill: $white;
+        // }
+    }
+
+    // .header__container
+
+    &__container {}
+
+    // .header__body
+
+    &__body {
+        display: flex;
+        justify-content: space-between;
+        padding-top: 15px;
+
+    }
+
+    // .header__burger
+
+    &__burger {
+        display: flex;
+        position: relative;
+        width: 100%;
+        font-family: "timesnewromanpsmt";
+
+        @media (min-width:769px) {
+            display: none;
+
+        }
+
+        ._close {
+            display: none;
+        }
+
+        &._active {
+            ._close {
+                display: block;
+            }
+
+            ._open {
+                display: none;
+            }
+
+            * {
+                color: $text-gray;
+            }
+
+        }
+    }
+
+    // .header__logo
+
+    &__logo {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        img,
+        picture,
+        svg {
+            width: 30px;
+            max-width: unset;
+            flex: 0 0 auto;
+            fill: $black;
+
+            @media (max-width: 768px) {
+                width: 20px;
+            }
+        }
+    }
+
+    nav {
+        flex: 1 1 auto;
+        width: 100%;
+
+        @media (min-width:769px) {
+            width: 50%;
+        }
+
+
+        @media (max-width:768px) {
+            &._desktop {
+                display: none;
+            }
+        }
+
+        ul {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+
+
+            li {
+                position: relative;
+
+                &:has(ul) {
+                    &:after {
+                        position: absolute;
+                        content: '';
+                        left: 0;
+                        top: 0;
+                        width: 100%;
+                        height: 100px;
+                    }
+                }
+
+                &:not(._tg) {
+                    @media (max-width:768px) {
+                        display: none;
+                    }
+                }
+
+
+
+                &._w100 {
+                    width: 100%;
+
+                    a {
+                        margin-inline: auto;
+                    }
+                }
+
+                a {
+                    position: relative;
+                    z-index: 1;
+                    width: fit-content;
+                    display: flex;
+                    gap: 2px;
+                    font-family: "timesnewromanpsmt";
+                    transition: opacity 0.3s ease 0s;
+
+                    @media (any-hover: hover) {
+                        &:hover {
+                            opacity: 0.5;
+                        }
+
+                        ;
+                    }
+
+
+                    label {
+                        font-size: 12px;
+                    }
+
+                    @media (max-width:768px) {
+                        width: 100%;
+                        justify-content: flex-end;
+                    }
+                }
+
+                ul {
+                    position: absolute;
+                    top: 30px;
+                    display: flex;
+                    flex-direction: column;
+                    gap: 5px;
+                    max-height: 0;
+                    overflow: hidden;
+                    transition: all 0.3s ease 0s;
+
+                    li {
+                        width: 100%;
+                    }
+
+                    a {
+                        white-space: nowrap;
+                        text-align: left;
+                    }
+                }
+
+                @media (any-hover: hover) {
+                    &:hover {
+                        ul {
+                            max-height: auto;
+                            overflow: visible;
+                        }
+                    }
+
+                    ;
+                }
+
+                @media (max-width:768px) {
+                    width: 100%;
+                }
+            }
+        }
+
+    }
+
+}

@@ -1,0 +1,100 @@
+.accordion {
+
+    // .accordion__item
+
+    &__item {
+        &[data-open] {
+            .accordion__item-content {
+                grid-template-rows: 1fr;
+            }
+
+            .accordion__item-title {
+                svg,img {
+                    transform: rotate(-45deg);
+                }
+            }
+
+        }
+
+        // .accordion__item-title
+
+        &-title {
+            width: 100%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            width: 100%;
+            cursor: pointer;
+
+
+            @media (any-hover: hover) {
+                &:hover {
+                    svg,img {
+                        transform: rotate(45deg);
+                    }
+                }
+            }
+
+            svg,img {
+                width: 14px;
+                height: 14px;
+                stroke: currentColor;
+                transition: all 0.3s ease 0s;
+
+                @media (max-width:768px) {
+                    width: 12px;
+                    height: 12px;
+                }
+            }
+
+            * {
+                pointer-events: none;
+            }
+
+            @media (any-hover: hover) {
+                &:hover {
+                    svg,img {
+                        transform: rotate(45deg);
+                    }
+                }
+            }
+        }
+
+        // .accordion__item-content
+
+        &-content {
+            display: grid;
+            grid-template-rows: 0fr;
+            transition: grid-template-rows 0.3s;
+
+            // .accordion__item-content-height
+
+            &-height {
+                overflow: hidden;
+
+                // ol {
+                //     & > :not(:last-child) {
+                //         border-bottom: 1px solid $stroke;
+                //     }
+
+                //     li {
+                //         padding: 20px 0;
+
+                //         @media (max-width: 768px) {
+                //             padding: 15px 0;
+                //         }
+                //     }
+                // }
+            }
+        }
+    }
+
+    // .accordion__open
+
+    &__open {}
+
+    ._btn {
+        width: 100%;
+    }
+}

@@ -1,0 +1,159 @@
+.footer {
+
+    // .footer__container
+
+    &__container {}
+
+    // .footer__body
+
+    &__body {
+
+        ._btn {
+            height: 200px;
+            border: 0;
+            width: 100%;
+            border-top: 1px solid $stroke;
+            border-radius: 0;
+
+            @media (max-width:1024px) {
+                height: 150px;
+            }
+
+            @media (max-width:768px) {
+                height: 100px;
+            }
+        }
+    }
+
+    nav {
+        border-top: 1px solid $stroke;
+        padding-top: 15px;
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 100px;
+
+        @media (max-width:768px) {
+            margin-bottom: 45px;
+            padding-top: 10px;
+        }
+
+        @media (max-width:768px) {
+            flex-direction: column;
+            align-items: center;
+            gap: 45px;
+
+            * {
+                text-align: center;
+            }
+        }
+
+        ul {
+            width: 100%;
+            flex: 1 1 auto;
+
+            &.center {
+                * {
+                    text-align: center;
+                }
+            }
+
+            &:last-child {
+                * {
+                    @media (min-width:769px) {
+                        text-align: right;
+                    }
+                }
+            }
+
+            &:nth-child(2) {
+                @media (max-width:768px) {
+                    order: -1;
+                }
+            }
+
+            label {
+                display: block;
+                opacity: 0.5;
+                font-size: 14px;
+                letter-spacing: -0.3px;
+                margin-bottom: 15px;
+
+                @media (max-width:768px) {
+                    font-size: 12px;
+                    margin-bottom: 10px;
+                }
+            }
+
+            a {
+                display: block;
+                font-family: "Times New Roman";
+                transition: opacity 0.3s ease 0s;
+
+                @media (any-hover: hover) {
+                    &:hover {
+                        opacity: 0.5;
+                    }
+
+                }
+
+                &:not(:last-child) {
+                    margin-bottom: 5px;
+                }
+
+            }
+        }
+    }
+
+    // .footer__bottom
+
+    &__bottom {
+        display: flex;
+        align-content: inherit;
+        justify-content: space-between;
+        border-top: 1px solid $stroke;
+        padding-top: 15px;
+        padding-bottom: 15px;
+
+        @media (max-width:768px) {
+            padding-top: 10px;
+            padding-bottom: 10px;
+        }
+
+        span {
+            opacity: 0.5;
+            font-family: "Times New Roman";
+
+            &.center {
+                text-align: center;
+            }
+
+        }
+
+        a {
+            font-family: "Times New Roman";
+            text-align: right;
+            transition: opacity 0.3s ease 0s;
+
+            @media (any-hover: hover) {
+                &:hover {
+                    opacity: 0.5;
+                }
+
+            }
+        }
+
+        * {
+            width: 100%;
+            flex: 1 1 auto;
+        }
+    }
+
+    &.about-footer {
+        background-color: $gray;
+
+        * {
+            color: $text-gray;
+            border-color: rgba($color: $stroke, $alpha: 0.2);
+        }
+    }
+}

@@ -1,0 +1,34 @@
+<div class="popup" id="main">
+    <div class="form">
+        <div class="form__content">
+            <div class="form__top">
+                <h3>Обратная связь</h3>
+                <button class="popup__close">
+                    <svg width="18" height="18" viewBox="0 0 18 18">
+                        <use xlink:href='img/svg/icons.svg#close' />
+                    </svg>
+                </button>
+            </div>
+            <form action="">
+                <div class="form__item" data-required>
+                    <input type="text" name="name" placeholder="Имя *">
+                </div>
+                <div class="form__item" data-required>
+                    <input type="text" name="phone" class="_mask-phone" placeholder="Телефон *">
+                </div>
+                <div class="form__item" data-required>
+                    <textarea name="msg" placeholder="Сообщение *"></textarea>
+                </div>
+                <div class="form__bottom">
+                    <button class="_btn _btn-blue">
+                        <div>Отправить</div>
+                    </button>
+                    <span>Нажимая на кнопку Отправить я даю согласие на обработку <a href="">персональных
+                            данных</a> и
+                        <a href="">политикa конфиденциальности.</a>
+                    </span>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

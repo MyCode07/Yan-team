@@ -1,58 +1,98 @@
 .hero {
-    margin-bottom: 0 !important;
-    z-index: 1 !important;
-    position: relative;
+    margin-top: 0 !important;
+    @include adaptive-value('padding-top', 150, 70, 1);
 
-    .section__body {
-        @include adaptive-value('padding-top', 130, 75, 1);
-
-        height: 100%;
-
-        img {
-            pointer-events: none;
+    &.hero-pages {
+        h1 {
+            @include adaptive-value('margin-bottom', 150, 70, 1);
         }
-
     }
 
-    // hero__top
+    .section__top {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 12px;
 
-    &__top {
+        @media (max-width:1024px) {
+            gap: 10px;
+            grid-template-columns: repeat(3, 1fr);
+            margin-bottom: 40px;
+        }
+
+        @media (max-width:768px) {
+            display: block;
+        }
+    }
+
+    .section__content {
         display: flex;
         flex-direction: column;
-        align-items: center;
-        gap: 15px;
-        text-align: center;
+        justify-content: space-between;
+        grid-column: span 2;
+
+        @media (min-width:769px) {
+            height: auto;
+        }
+
+        @media (max-width:1024px) {
+            gap: 15px;
+        }
+
+        @media (max-width:768px) {
+            margin-bottom: 40px;
+        }
 
         p {
-            max-width: 440px;
-            width: 100%;
-            text-align: center;
-            margin-top: 15px;
-            @include adaptive-value('margin-bottom', 100, 75, 1);
+            @media (min-width:1025px) {
+                margin-left: auto;
+            }
         }
     }
 
-    // .hero__bottom
+    .section__bottom {
+        @media (min-width:1025px) {
+            position: relative;
+            margin-top: -27px;
+        }
 
-    &__bottom {
-        @include adaptive-value('height', 700, 200, 1);
+        div:not(.hero__portfolio) {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        a {
+            font-size: 20px;
+
+            @media (max-width:1024px) {
+                font-size: 16px;
+            }
+        }
 
         img,
-        picture {
+        picture,
+        svg {
+            display: block;
             width: 100%;
-            height: 100%;
-            object-fit: cover;
+            object-fit: contain;
+            pointer-events: none;
+            margin-top: 24px;
+
+            @media (max-width:1024px) {
+                margin-top: 5px;
+            }
         }
     }
 
-    &.projects-hero {
+    ._btn {
+        width: 100%;
 
-        .section__body {
-            @include adaptive-value('margin-bottom', 100, 75, 1);
+        @media (min-width:1025px) {
+            aspect-ratio: 1/1;
         }
 
-        h1 {
-            max-width: 580px;
+        @media (max-width:1024px) {
+            height: 160px;
         }
     }
 }

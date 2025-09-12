@@ -1,62 +1,41 @@
 // null default styles
 @import "null";
-
 // load fonts
 @import "fonts";
-
 //load variables
 @import "common/variables";
-
 // load mixins
 @import "mixins";
-
 // load swiper
 @import "../../node_modules/swiper/swiper";
-
 // load fancybox
 @import "../../node_modules/@fancyapps/ui/dist/fancybox/fancybox";
-
-
-
 // load common
 @import "common/common";
-
 // load header
 @import "common/header";
-
 // load footer
 @import "common/footer";
-
 // load form
 @import "common/form";
-
-// load side popup
-@import "common/popup";
-
 // load footer
 @import "common/menu";
-
 // load accordeon
-@import "common/accordeon";
-
-// load ticker
-@import "common/ticker";
-
-// load grid
-@import "parts/grid";
-
-// load hero
-@import "parts/hero";
-
-// load section
-@import "parts/section";
-
-// load section
-@import "parts/cards";
-
+// @import "common/accordeon";
+// load privacy
+@import "parts/privacy";
 // load sliders
 @import "parts/sliders";
-
+// load grid
+@import "parts/grid";
+// load hero
+@import "parts/hero";
+// load section
+@import "parts/section";
+// load section
+@import "parts/cards";
+// load sliders
+@import "parts/sliders";
 
 .pages {
     position: fixed;

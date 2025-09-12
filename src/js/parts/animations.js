@@ -2,8 +2,9 @@
 import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger.js'
 import { TextPlugin } from 'gsap/TextPlugin.js';
+import { Observer } from 'gsap/Observer.js';
 
-gsap.registerPlugin(ScrollTrigger, TextPlugin);
+gsap.registerPlugin(ScrollTrigger, TextPlugin, Observer);
 
 const observer = new IntersectionObserver(entries => {
     entries.forEach(entry => {
@@ -127,3 +128,163 @@ export const animateSVGStaggerAction = () => {
         observerSVGStagger.observe(elem);
     })
 }
+
+
+// начало анимации текстов
+class TextAnimator {
+    constructor() {
+        this.animatedElements = new Map();
+        this.observer = null;
+    }
+
+    // Инициализация
+    initialize() {
+        this.prepareAllTextElements();
+        this.setupIntersectionObserver();
+        this.setupHoverHandlers();
+    }
+
+    // Подготовка всех текстовых элементов
+    prepareAllTextElements() {
+        const textElements = document.querySelectorAll('[data-animate-text]');
+
+        textElements.forEach((element, index) => {
+            const originalText = element.textContent;
+            element.textContent = '';
+            element.dataset.originalText = originalText;
+            element.dataset.animationId = `text-${index}`;
+
+            this.prepareTextElement(element, originalText);
+            this.animatedElements.set(element, false);
+        });
+    }
+
+    // Подготовка отдельного элемента
+    prepareTextElement(element, text) {
+        const words = text.split(' ');
+
+        words.forEach((word, wordIndex) => {
+            const wordSpan = document.createElement('span');
+            wordSpan.className = 'word';
+
+            word.split('').forEach(letter => {
+                const letterSpan = document.createElement('span');
+                letterSpan.className = 'letter';
+                letterSpan.textContent = letter;
+                letterSpan.style.opacity = '0';
+                letterSpan.style.display = 'inline-block';
+                wordSpan.appendChild(letterSpan);
+            });
+
+            element.appendChild(wordSpan);
+
+            if (wordIndex < words.length - 1) {
+                element.appendChild(document.createTextNode(' '));
+            }
+        });
+    }
+
+    // Настройка Intersection Observer
+    setupIntersectionObserver() {
+        this.observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const element = entry.target;
+                    const hasAnimated = this.animatedElements.get(element);
+
+                    if (!hasAnimated) {
+                        this.animateElement(element);
+                        this.animatedElements.set(element, true);
+                    }
+                }
+            });
+        }, {
+            threshold: 0.3,
+            rootMargin: '50px'
+        });
+
+        // Наблюдаем за всеми элементами
+        this.animatedElements.forEach((_, element) => {
+            this.observer.observe(element);
+        });
+    }
+
+    // Анимация конкретного элемента
+    animateElement(element) {
+        const words = element.querySelectorAll('.word');
+        const tl = gsap.timeline();
+
+        words.forEach((word, wordIndex) => {
+            const letters = Array.from(word.querySelectorAll('.letter'));
+            const shuffledLetters = letters.sort(() => Math.random() - 0.5);
+
+            tl.to(shuffledLetters, {
+                opacity: 1,
+                duration: 0.1,
+                stagger: {
+                    each: 0.02,
+                    ease: "power2.out"
+                }
+            }, wordIndex * 0);
+        });
+    }
+
+    // НАСТРОЙКА HOVER ТОЛЬКО ДЛЯ ССЫЛОК
+    setupHoverHandlers() {
+        this.animatedElements.forEach((_, element) => {
+            // Проверяем, является ли элемент ссылкой (тег <a>)
+            if (element.tagName === 'A') {
+                element.style.cursor = 'pointer';
+                element.title = 'Наведите чтобы увидеть снова';
+
+                element.addEventListener('mouseenter', (e) => {
+                    // Предотвращаем переход по ссылке при hover
+                    e.preventDefault();
+                    this.restartAnimation(element);
+                });
+
+                // Убираем лишние анимации масштаба, оставляем только перезапуск анимации текста
+            }
+
+            // Для остальных элементов (не ссылок) ничего не делаем
+        });
+    }
+
+    // Перезапуск анимации
+    restartAnimation(element) {
+        const letters = element.querySelectorAll('.letter');
+
+        // Быстро скрываем буквы
+        gsap.to(letters, {
+            opacity: 0,
+            duration: 0.1,
+            onComplete: () => {
+                // Запускаем анимацию заново
+                this.animateElement(element);
+            }
+        });
+    }
+}
+
+// Инициализация после загрузки DOM
+document.addEventListener('DOMContentLoaded', function () {
+    const textAnimator = new TextAnimator();
+    textAnimator.initialize();
+});
+
+// конец анимации текстов
+
+
+document.addEventListener("DOMContentLoaded", () => {
+    const sections = document.querySelectorAll(".border-top, .border-bottom");
+
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add("active");
+            }
+        });
+    }, { threshold: 0.3 });
+
+    sections.forEach(section => observer.observe(section));
+});

@@ -1,6 +1,6 @@
 $maxWidth: 1920;
 $maxWidthContainer: $containerWithPadding;
-$mobileWidth: 360;
+$mobileWidth: 375;
 
 @mixin adaptive-value($property, $startSize, $minSize, $type) {
     $addSize: $startSize - $minSize;
@@ -15,7 +15,7 @@ $mobileWidth: 360;
         }
     } @else if $type==2 {
         //Только если больше контейнера
-        #{$property}: $startSize + px;
+        #{$property}: $startSize + px; 
         @media (min-width: #{$maxWidthContainer + px}) {
             #{$property}: calc(#{$minSize + px} + #{$addSize} * ((100vw - #{$mobileWidth + px}) / #{$maxWidth - $mobileWidth}));
         }

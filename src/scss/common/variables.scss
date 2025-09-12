@@ -1,12 +1,11 @@
 $container: 1920;
-$padding: 15;
+$padding: 12;
 $containerWithPadding: $container + ($padding * 2);
-
-
 $red: #FF0000;
-$black: #16171B;
+$accent: #0012FF;
+$black: #080808;
 $white: #fff;
-$stroke: #E8E8E8;
-$gray: #858789;
-$text-gray: #DEE1E6;
-
+$grey: #6B6B6B;
+$grey-stroke: rgba(8, 8, 8, 0.20);
+$white-stroke: rgba(255, 255, 255, 0.40);
+$black-stroke: #080808;

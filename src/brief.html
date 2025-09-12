@@ -1,0 +1,194 @@
+@@include('./html/head.html', {
+"title":"Бриф",
+})
+
+@@include('./html/header.html',{"class":" "})
+
+<main>
+
+    <section class="section hero breif-hero">
+        <div class="section__container _container">
+            <div class="section__body">
+                <div class="hero__top">
+                    <h1>Заполните форму,<br> и мы свяжемся с вами для обсуждения вашего проекта</h1>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section form-section">
+        <div class="section__container _container">
+            <div class="section__body">
+                <form action="#" class="form">
+                    <div class="form__block grid grid-2 border-top" data-animate-stagger data-animate-bottom>
+                        <h2 class="form__block-title border-top">Напишите о себе</h2>
+                        <div class="form__row border-top">
+                            <div class="form__item border-bottom" data-required>
+                                <input type="text" name="name" id="name" placeholder="Ваше имя *">
+                            </div>
+                            <div class="form__item border-bottom" data-required>
+                                <input type="text" name="phone" id="phone" placeholder="Номер телефона *"
+                                    inputmode="text">
+                            </div>
+                            <div class="form__item border-bottom" data-required>
+                                <input type="email" name="email" id="email" placeholder="Email *">
+                            </div>
+                            <div class="form__item border-bottom">
+                                <input type="text" name="telegram" id="telegram" placeholder="Telegram">
+                            </div>
+                            <div class="form__item border-bottom" data-required>
+                                <input type="text" name="city" id="city" placeholder="Город">
+                            </div>
+                            <div class="form__item border-bottom">
+                                <input type="text" name="position" id="position" placeholder="Должность">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form__block grid grid-2 border-top" data-animate-stagger data-animate-bottom>
+                        <h2 class="form__block-title border-top">Что нужно сделать?</h2>
+                        <div class="form__row _columns border-top" data-checkbox-container id="interesting">
+                            <div class="form__item">
+                                <label for="Landing" class="border-bottom">
+                                    <span class="value">Лендинг</span>
+                                    <input id="Landing" name="service" type="radio" value="Лендинг">
+                                    <span class="checkbox"><img src="img/icons/check.svg" alt=""></span>
+                                </label>
+                            </div>
+                            <div class="form__item">
+                                <label for="Multi-page" class="border-bottom">
+                                    <span class="value">Многостраничный сайт</span>
+                                    <input id="Multi-page" name="service" type="radio" value="Многостраничный сайт">
+                                    <span class="checkbox"><img src="img/icons/check.svg" alt=""></span>
+                                </label>
+                            </div>
+                            <div class="form__item">
+                                <label for="ecommerce" class="border-bottom">
+                                    <span class="value">Интернет-магазин</span>
+                                    <input id="ecommerce" name="service" type="radio" value="Интернет-магазин">
+                                    <span class="checkbox"><img src="img/icons/check.svg" alt=""></span>
+                                </label>
+                            </div>
+                            <div class="form__item">
+                                <label for="Identity" class="border-bottom">
+                                    <span class="value">Айдентика</span>
+                                    <input id="Identity" name="service" type="radio" value="Айдентика">
+                                    <span class="checkbox"><img src="img/icons/check.svg" alt=""></span>
+                                </label>
+                            </div>
+                            <div class="form__item">
+                                <label for="consultation" class="border-bottom">
+                                    <span class="value">Нужна ваша консультация</span>
+                                    <input id="consultation" name="service" type="radio"
+                                        value="Нужна ваша консультация">
+                                    <span class="checkbox"><img src="img/icons/check.svg" alt=""></span>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form__block grid grid-2 border-top" data-animate-stagger data-animate-bottom>
+                        <h2 class="form__block-title border-top">Планируемый бюджет на проект*</h2>
+                        <div class="form__row _columns border-top" data-checkbox-container id="budget">
+                            <div class="form__item">
+                                <label for="60-200" class="border-bottom">
+                                    <span class="value">60.000 – 200.000 рублей</span>
+                                    <input id="60-200" name="price" type="radio" value="60.000–200.000 рублей">
+                                    <span class="checkbox"><img src="img/icons/check.svg" alt=""></span>
+                                </label>
+                            </div>
+                            <div class="form__item">
+                                <label for="200-400" class="border-bottom">
+                                    <span class="value">200.000 – 400.000 рублей</span>
+                                    <input id="200-400" name="price" type="radio" value="200.000–400.000 рублей">
+                                    <span class="checkbox"><img src="img/icons/check.svg" alt=""></span>
+                                </label>
+                            </div>
+                            <div class="form__item">
+                                <label for="400+" class="border-bottom">
+                                    <span class="value">Более 400.000 рублей</span>
+                                    <input id="400+" name="price" type="radio" value="Более 400.000 рублей">
+                                    <span class="checkbox"><img src="img/icons/check.svg" alt=""></span>
+                                </label>
+                            </div>
+                            <div class="form__item border-bottom">
+                                <input type="text" name="summ" id="summ" placeholder="Напишите сумму">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form__block grid grid-2 border-top" data-animate-stagger data-animate-bottom>
+                        <h2 class="form__block-title border-top">Удобный способ связи*</h2>
+                        <div class="form__row _columns border-top" data-checkbox-container id="conn-type">
+                            <div class="form__item">
+                                <label for="contact-tg" class="border-bottom">
+                                    <span class="value">Telegram</span>
+                                    <input id="contact-tg" name="contact" type="radio" value="Telegram">
+                                    <span class="checkbox"><img src="img/icons/check.svg" alt=""></span>
+                                </label>
+                            </div>
+                            <div class="form__item">
+                                <label for="contact-whapp" class="border-bottom">
+                                    <span class="value">WhatsApp</span>
+                                    <input id="contact-whapp" name="contact" type="radio" value="WhatsApp">
+                                    <span class="checkbox"><img src="img/icons/check.svg" alt=""></span>
+                                </label>
+                            </div>
+                            <div class="form__item">
+                                <label for="contact-phone" class="border-bottom">
+                                    <span class="value">Телефонный звонок</span>
+                                    <input id="contact-phone" name="contact" type="radio" value="Телефонный звонок">
+                                    <span class="checkbox"><img src="img/icons/check.svg" alt=""></span>
+                                </label>
+                            </div>
+                            <div class="form__item">
+                                <label for="contact-email" class="border-bottom">
+                                    <span class="value">Email</span>
+                                    <input id="contact-email" name="contact" type="radio" value="email">
+                                    <span class="checkbox"><img src="img/icons/check.svg" alt=""></span>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form__block grid grid-2 border-top" data-animate-stagger data-animate-bottom>
+                        <h2 class="form__block-title border-top">Если у вас есть техническое задание <br>
+                            или другой файл связанный спроектом, прикрепите.</h2>
+                        <div class="form__row border-top">
+                            <div class="form__item">
+                                <label for="file" class="border-bottom">
+                                    <span class="value filename">+ Прикрепить файл</span>
+                                    <input id="file" name="file" type="file"
+                                        accept="application/msword, application/vnd.ms-powerpoint, text/plain, application/pdf">
+                                    <div class="_delete-file">Удалить</div>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form__block grid grid-2 border-top" data-animate-stagger data-animate-bottom>
+                        <h2 class="form__block-title border-top">Напишите кратко о задаче</h2>
+                        <div class="form__row border-top">
+                            <div class="form__item _textarea-input border-bottom" data-required>
+                                <textarea name="msg" id="msg" placeholder="Сообщение *"></textarea>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form__button grid grid-2" data-animate-stagger data-animate-bottom>
+                        <p>Нажимая на кнопку «Отправить»,<br> я даю согласие на обработку
+                            персональных данных <br> и соглашаюсь с
+                            <a href="privacy-policy.html" target="_blank">политикой конфиденциальности.</a>
+                        </p>
+                        <button class="" type="submit"><span>Отправить</span></button>
+                        <div class="grid grid-2 _hide error-msgs">
+                            <p>
+                                <label>Поля:</label>
+                                <span></span>
+                                <label> обязательны к заполннию.</label>
+                            </p>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </section>
+
+</main>
+
+@@include('./html/footer.html')
+@@include('./html/scripts.html')

@@ -4,16 +4,13 @@ html {
 
 body {
     scroll-behavior: smooth;
-    font-family: "HelveticaNeue";
+    font-family: "Helvetica";
     font-style: normal;
     line-height: normal;
     font-weight: 400;
     color: $black;
-    @include adaptive-value("font-size", 16, 14, 1);
-
-    @media (min-width:769px) {
-        letter-spacing: -0.3px;
-    }
+    @include adaptive-value("font-size", 20, 14, 1);
+    @include adaptive-value("letter-spacing", -2, -1.5, 1);
 }
 
 .wrapper {
@@ -21,7 +18,6 @@ body {
     min-height: 100%;
     scroll-behavior: smooth;
     overflow-x: clip;
-
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -30,11 +26,6 @@ body {
 main {
     position: relative;
     flex: 1 1 auto;
-}
-
-.about-page {
-    background-color: $gray;
-    color: $text-gray;
 }
 
 ._container {
@@ -65,32 +56,60 @@ figure {
 }
 
 h1 {
-    text-align: center;
-    font-family: "timesnewromanpsmt";
-    @include adaptive-value('font-size', 35, 24, 1);
+    font-family: Helvetica;
+    @include adaptive-value('font-size', 64, 30, 1);
     font-style: normal;
     font-weight: 400;
-    line-height: 100%;
-    letter-spacing: -1px;
+    line-height: 90%;
+    @include adaptive-value('letter-spacing', -7, -3, 1);
 }
 
 h2 {
-    text-align: center;
-    font-family: "timesnewromanpsmt";
-    @include adaptive-value('font-size', 42, 18, 1);
+    @include adaptive-value('font-size', 99, 24, 1);
     font-style: normal;
     font-weight: 400;
-    line-height: 100%;
-    letter-spacing: -0.3;
+    line-height: 85%;
+    @include adaptive-value('letter-spacing', -10, -2, 1);
 }
 
 h3 {
-    font-size: 18px;
+    font-size: 16px;
+    font-style: normal;
     font-weight: 400;
-    letter-spacing: -0.3;
+    line-height: 100%;
+    letter-spacing: -1.5px;
+    text-transform: uppercase;
 
-    @media (max-width:768px) {
+    @media (max-width:1024px) {
         font-size: 14px;
+        letter-spacing: -1px;
+    }
+}
+
+h4 {
+    @include adaptive-value('font-size', 26, 16, 1);
+    font-style: normal;
+    font-weight: 400;
+    line-height: 100%;
+    letter-spacing: -2px;
+
+    @media (max-width:1024px) {
+        letter-spacing: -1px;
+    }
+}
+
+._small-uppercase {
+    height: fit-content;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 100%;
+    letter-spacing: -1.5px;
+    text-transform: uppercase;
+
+    @media (max-width:1024px) {
+        font-size: 12px;
+        letter-spacing: -1px;
     }
 }
 
@@ -101,78 +120,118 @@ h5,
 h6 {}
 
 p {
-    font-size: 16px;
-    letter-spacing: -0.03px;
+    font-size: 20px;
+    letter-spacing: -2px;
     line-height: 1.2;
 
     @media (max-width: 1024px) {
         font-size: 14px;
-        line-height: 1.1;
+        letter-spacing: -1.5px;
     }
 }
 
-
 ._btn {
     display: flex;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    width: fit-content;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: flex-end;
+    aspect-ratio: 1/1;
+    padding: 12px;
+    position: relative;
+    overflow: hidden;
 
-    font-style: normal;
-    font-weight: 400;
-    line-height: 100%;
-    letter-spacing: -0.3px;
-    border-radius: 200px;
-
-
-    // ._btn-stroke
-
-    &-stroke {
-        font-family: "timesnewromanpsmt";
-        font-size: 14px;
-        border: 1px solid $stroke;
-        text-transform: uppercase;
-        padding: 20px 40px;
-        transition: all 0.3s ease 0s;
-
-        @media (any-hover: hover) {
-            &:hover {
-                background-color: $black;
-                color: $white;
-            }
-
-        }
-
-        @media (max-width:768px) {
-            font-size: 12px;
-            padding: 15px 30px;
-
-        }
-
+    &:before {
+        content: '';
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        width: 300%;
+        height: 300%;
+        transform: translate(-50%, -50%) scale(0);
+        opacity: 0;
+        transition: transform 0.6s ease, opacity 0.6s ease;
+        pointer-events: none;
+        border-radius: 50%;
     }
 
-    // ._btn-fill
+    @media (max-width:1024px) {
+        padding: 10px;
+        width: 100%;
+        aspect-ratio: unset;
+        height: 160px;
+    }
 
-    &-fill {
-        background-color: $black;
-        padding: 15px 20px;
+    span {
+        position: relative;
+        z-index: 1;
         color: $white;
+        width: 100%;
+        font-size: 20px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: 100%;
+        letter-spacing: -1.5px;
+        text-transform: uppercase;
+        pointer-events: none;
 
-        transition: all 0.3s ease 0s;
+        @media (max-width:1200px) {
+            font-size: 16px;
+        }
+
+        @media (max-width:640px) {
+            font-size: 14px;
+        }
+    }
+
+    img,
+    svg,
+    picture {
+        position: relative;
+        z-index: 1;
+        pointer-events: none;
+        width: 24px;
+        height: 24px;
+
+        @media (max-width:1024px) {
+            width: 20px;
+            height: 20px;
+        }
+    }
+
+    &._accent-btn {
+        &:before {
+            background: radial-gradient(circle, rgba(8, 8, 8, 0.7) 0%, rgba(8, 8, 8, 0) 70%);
+        }
 
         @media (any-hover: hover) {
             &:hover {
-                background-color: $gray;
-                color: $black;
+                &:before {
+                    transform: translate(-50%, -50%) scale(1);
+                    opacity: 1;
+                }
             }
-
         }
 
-        @media (max-width:768px) {
-            font-size: 14px;
-            padding: 10px 15px;
+        background-color: $accent;
+    }
+
+    &._black-btn {
+        background-color: $black;
+
+        &:before {
+            background: radial-gradient(circle, rgba(0, 18, 255, 0.7) 0%, rgba(0, 18, 255, 0) 70%);
         }
+
+        @media (any-hover: hover) {
+            &:hover {
+                &:before {
+                    transform: translate(-50%, -50%) scale(1);
+                    opacity: 1;
+                }
+            }
+        }
+
+        background-color: $black;
     }
 }
 
@@ -201,47 +260,46 @@ p {
     }
 }
 
-._centered {
-    li {
-        display: flex;
-        justify-content: space-between;
-        padding: 15px 0;
-        border-top: 1px solid rgba($color: $stroke, $alpha: 0.2);
+.border-top {
+    position: relative;
 
-        &:last-child {
-            border-bottom: 1px solid rgba($color: $stroke, $alpha: 0.2);
+    &:before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        height: 1px;
+        width: 100%;
+        transform: scaleX(0);
+        transform-origin: left;
+        transition: transform 0.8s ease;
+    }
+
+    &.active {
+        &:before {
+            transform: scaleX(1);
         }
+    }
+}
 
-        @media (max-width:768px) {
-            padding: 10px 0;
-        }
+.border-bottom {
+    position: relative;
 
-        label {
-            width: 100%;
-            flex: 1 1 auto;
+    &:before {
+        content: "";
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        height: 1px;
+        width: 100%;
+        transform: scaleX(0);
+        transform-origin: left;
+        transition: transform 0.8s ease;
+    }
 
-            @media (max-width:768px) {
-                font-size: 12px;
-            }
-        }
-
-        div {
-            display: flex;
-            justify-content: center;
-            gap: 0;
-            flex: 1 1 auto;
-            width: 100%;
-
-            p {
-                @include adaptive-value('font-size', 160, 120, 1);
-                font-style: normal;
-                font-weight: 400;
-                line-height: 0.8;
-                text-align: center;
-                color: #DEE1E6;
-            }
-
-            span {}
+    &.active {
+        &:before {
+            transform: scaleX(1);
         }
     }
 }

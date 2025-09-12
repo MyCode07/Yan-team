@@ -21,7 +21,7 @@ import "./parts/filters.js";
 accorden();
 replaceDomElements();
 runTicker();
-stickyHeader(); 
+stickyHeader();
 // maskInputs('+7 (999) 999-99-99', '[name="phone"]')
 // playVideoAction();
 

@@ -1,42 +1,50 @@
 .grid {
     display: grid;
+    gap: 12px;
 
-    ._column-2 {
-        @media (min-width:769px) {
-            grid-column: span 2;
-        }
+    @media (max-width:1024px) {
+        gap: 10px;
     }
 
     // .grid-2
-
     &-2 {
-        gap: 60px 15px;
         grid-template-columns: repeat(2, 1fr);
 
-        @media (max-width: 768px) {
+        @media (max-width:1024px) {
             grid-template-columns: 1fr;
-            gap: 30px;
-        }
-
-        a {
-            display: block;
         }
     }
 
     // .grid-3
-
     &-3 {
         grid-template-columns: repeat(3, 1fr);
-        gap: 60px 15px;
+    }
 
-        @media (max-width: 1024px) {
-            gap: 45px 10px;
+    // .grid-4
+    &-4 {
+        grid-template-columns: repeat(4, 1fr);
+        gap: 12px;
+
+        @media (max-width:1024px) {
+            gap: 10px;
         }
 
-        @media (max-width: 768px) {
-            gap: 30px;
+        @media (max-width:768px) {
             grid-template-columns: 1fr;
         }
     }
 
+    ._column-1 {
+        @media (min-width:769px) {
+            grid-column: span 1;
+            padding-bottom: 99%;
+        }
+    }
+
+    ._column-2 {
+        @media (min-width:769px) {
+            grid-column: span 2;
+            @include adaptive-value('height', 950, 355, 1);
+        }
+    }
 }

@@ -4,6 +4,7 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger.js'
 import { TextPlugin } from 'gsap/TextPlugin.js';
 import { Observer } from 'gsap/Observer.js';
 
+
 gsap.registerPlugin(ScrollTrigger, TextPlugin, Observer);
 
 const observer = new IntersectionObserver(entries => {
@@ -95,7 +96,6 @@ export const animateStaggerAction = () => {
     })
 }
 
-
 // stagger svg animations
 const observerSVGStagger = new IntersectionObserver((entries, self) => {
     let targets = entries
@@ -119,7 +119,6 @@ function animateSVG(elem, i) {
         stagger: 0.3,
     });
 }
-
 
 const animateSVGElems = document.querySelectorAll('[data-animate-svg]');
 export const animateSVGStaggerAction = () => {
@@ -275,6 +274,8 @@ document.addEventListener('DOMContentLoaded', function () {
 // конец анимации текстов
 
 
+// начало анимации заливки бордеров
+
 document.addEventListener("DOMContentLoaded", () => {
     const sections = document.querySelectorAll(".border-top, .border-bottom");
 
@@ -288,3 +289,5 @@ document.addEventListener("DOMContentLoaded", () => {
 
     sections.forEach(section => observer.observe(section));
 });
+
+// конец анимации заливки бордеров

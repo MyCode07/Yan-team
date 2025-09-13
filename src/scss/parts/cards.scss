@@ -19,7 +19,7 @@
 
         &:after {
             position: absolute;
-            content: 'Посмотреть проект →';
+            content: 'Посмотреть  проект →';
             left: 0;
             top: 0;
             opacity: 0;
@@ -35,7 +35,7 @@
                 }
 
                 span {
-                    display: none;
+                    display: none !important;
                 }
             }
         }
@@ -54,26 +54,52 @@
     }
 
     @media (min-width:769px) {
-        &:nth-child(4) {
+        &._4 {
             grid-column: 4;
             margin-top: auto;
         }
 
-        &:nth-child(5) {
+        &._5 {
             grid-column-start: 3;
             grid-column-end: 5;
             margin-left: auto;
         }
 
-        &:nth-child(8) {
+        &._8 {
             grid-row-start: 5;
             grid-column-start: 4;
         }
 
-        &:last-child {
+        &._9 {
             grid-row-start: 6;
             grid-column-start: 2;
             grid-column-end: 4;
+        }
+
+        &._10 {
+            grid-row-start: 7;
+        }
+
+        &._11 {
+            grid-row-start: 7;
+        }
+
+        &._12 {
+            grid-row-start: 8;
+            grid-column-start: 3;
+            grid-column-end: 5;
+        }
+
+        &._13 {
+            grid-row-start: 9;
+        }
+
+        &._14 {
+            grid-row-start: 10;
+        }
+
+        &._15 {
+            grid-row-start: 10;
         }
     }
 }

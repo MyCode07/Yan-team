@@ -291,3 +291,119 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 // конец анимации заливки бордеров
+
+// начало анимации Заголовков
+
+document.addEventListener('DOMContentLoaded', () => {
+
+    const ANIM_CONFIG = {
+        start: {
+            y: '100%',
+            rotationX: -8,
+            opacity: 0
+        },
+        end: {
+            y: 0,
+            rotationX: 0,
+            opacity: 1
+        },
+        duration: 1.2,
+        ease: 'power3.out',
+        lineDelay: 0.15, // задержка между строками
+        threshold: 0.1
+    };
+
+    const animElements = document.querySelectorAll('.anim-title-line');
+
+    if (typeof gsap === 'undefined') {
+        animElements.forEach(el => {
+            el.style.opacity = '1';
+            el.style.transform = 'none';
+        });
+        return;
+    }
+
+    // Правильная установка начального состояния
+    animElements.forEach((el, index) => {
+        gsap.set(el, {
+            y: ANIM_CONFIG.start.y,
+            rotationX: ANIM_CONFIG.start.rotationX,
+            opacity: ANIM_CONFIG.start.opacity
+        });
+    });
+
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                const lines = entry.target.closest('h1, h2, h3').querySelectorAll('.anim-title-line');
+
+                lines.forEach((line, lineIndex) => {
+                    // Анимируем каждую строку с задержкой
+                    gsap.to(line, {
+                        y: ANIM_CONFIG.end.y,
+                        rotationX: ANIM_CONFIG.end.rotationX,
+                        opacity: ANIM_CONFIG.end.opacity,
+                        duration: ANIM_CONFIG.duration,
+                        ease: ANIM_CONFIG.ease,
+                        delay: lineIndex * ANIM_CONFIG.lineDelay,
+                        overwrite: 'auto'
+                    });
+                });
+
+                observer.unobserve(entry.target);
+            }
+        });
+    }, {
+        threshold: ANIM_CONFIG.threshold
+    });
+
+    animElements.forEach(el => {
+        observer.observe(el);
+    });
+
+});
+
+// конец анимации Заголовков
+
+// начало анимации Hero
+
+document.addEventListener("DOMContentLoaded", () => {
+    const tl = gsap.timeline({
+        defaults: {
+            ease: "power3.out",
+            duration: 0.6
+        }
+    });
+
+    // 1. Шапка
+    tl.from("header, .header, .top-nav, .black-bar", {
+        clipPath: "inset(0 100% 0 0)",
+        duration: 0.7,
+        stagger: 0.07
+    });
+
+    // 2. Подзаголовок
+    tl.from(".hero .section__content p", {
+        y: 20,
+        opacity: 0
+    }, "-=0.3");
+
+    // 3. Кнопка — рост снизу вверх через scaleY
+    tl.from(".hero ._btn", {
+        scaleY: 0,
+        opacity: 0,
+        duration: 0.6,
+        ease: "power2.out",
+        transformOrigin: "bottom"
+    }, "-=0.2");
+
+    // 4. Логотип (заливка снизу вверх)
+    tl.from(".hero .section__bottom img", {
+        clipPath: "inset(100% 0 0 0)",
+        duration: 0.6,
+        ease: "power2.out"
+    }, "0.2");
+
+});
+
+// конец анимации Hero

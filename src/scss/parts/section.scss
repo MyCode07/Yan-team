@@ -19,7 +19,7 @@
     h2 {
         @include adaptive-value('margin-bottom', 60, 30, 1);
 
-        span {
+        label {
             opacity: 0.2;
         }
     }
@@ -135,6 +135,8 @@
 }
 
 .clients {
+    @include adaptive-value('margin-bottom', 150, 70, 1);
+
     .grid {
         @media (max-width:768px) {
             gap: 20px;

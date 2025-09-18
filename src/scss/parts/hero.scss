@@ -8,6 +8,17 @@
         }
     }
 
+    // .hero__portfolio
+    &__portfolio {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+
+        a{
+            font-style: italic;
+        }
+    }
+
     .section__top {
         display: grid;
         grid-template-columns: repeat(4, 1fr);

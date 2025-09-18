@@ -139,6 +139,7 @@ p {
     padding: 12px;
     position: relative;
     overflow: hidden;
+    transform-origin: bottom;
 
     &:before {
         content: '';

@@ -55,3 +55,10 @@
         opacity 0.5s ease 0s,
         transform 0.5s ease 0s;
 }
+
+.anim-title-line {
+    display: inline-block;
+    opacity: 0;
+    transform-origin: bottom center;
+    will-change: transform, opacity;
+}

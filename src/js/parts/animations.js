@@ -112,12 +112,14 @@ const observerSVGStagger = new IntersectionObserver((entries, self) => {
 
 function animateSVG(elem, i) {
     gsap.to(elem, {
-        duration: 5,
+        duration: 3,
         delay: 0.3,
         strokeDashoffset: 0,
         ease: 'ease',
         stagger: 0.3,
     });
+    console.log(1);
+
 }
 
 const animateSVGElems = document.querySelectorAll('[data-animate-svg]');

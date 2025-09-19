@@ -184,6 +184,16 @@ p {
         }
     }
 
+    @media (any-hover: hover) {
+        &:hover {
+            img,
+            svg,
+            picture {
+                transform: rotate(180deg);
+            }
+        }
+    }
+
     img,
     svg,
     picture {
@@ -192,6 +202,7 @@ p {
         pointer-events: none;
         width: 24px;
         height: 24px;
+        transition: all 0.3s ease 0s;
 
         @media (max-width:1024px) {
             width: 20px;

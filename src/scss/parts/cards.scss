@@ -126,6 +126,7 @@
 
     @media (max-width:768px) {
         flex-direction: column;
+        gap: 20px;
     }
 
     &:first-child {
@@ -174,22 +175,24 @@
         }
     }
 
-    img,
-    picture {
-        pointer-events: none;
-        grid-column-start: 3;
-        object-fit: cover;
+    // .services__card-svg
+    &-svg {
+        svg {
+            display: block;
+            @include adaptive-value('width', 230, 100, 1);
+            @include adaptive-value('height', 230, 100, 1);
+            fill: none;
+            opacity: 0.4;
+            stroke-dashoffset: 1000;
+            transition: stroke-dashoffset var(--delay) ease 0s;
 
-        @media (min-width:769px) {
-            aspect-ratio: 1/1;
-        }
+            @media (min-width:769px) {
+                margin-left: auto;
+            }
 
-        @media (max-width:1024px) and (min-width:769px) {
-            max-width: 33%;
-        }
-
-        @media (max-width:768px) {
-            height: 200px;
+            &._active {
+                stroke-dashoffset: 0;
+            }
         }
     }
 }

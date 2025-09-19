@@ -5,7 +5,7 @@
 // import { stickyHeader } from "./parts/header.js";
 // import { playVideoAction } from "./parts/video.js";
 // import { range } from "./parts/range.js";
-import { animateAction, animateStaggerAction} from "./parts/animations.js";
+import { animateAction, animateStaggerAction, animateSVGStaggerAction } from "./parts/animations.js";
 
 import "./parts/animations.js";
 // import "./parts/forms.js";
@@ -32,7 +32,7 @@ import "./parts/menu.js";
 
 animateStaggerAction();
 animateAction();
-
+animateSVGStaggerAction();
 
 document.addEventListener('click', function (e) {
     let targetEl = e.target;

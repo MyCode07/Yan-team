@@ -172,52 +172,50 @@
                     background-color: $grey-stroke;
                 }
 
-                a {
-                    position: relative;
-                    display: flex;
-                    align-items: center;
-                    justify-content: space-between;
-                    padding: 5px 0;
-                    position: relative;
-                    color: $black;
-                    border-bottom: 1px solid $grey-stroke;
+                position: relative;
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                padding: 5px 0;
+                position: relative;
+                color: $black;
 
-                    @media (any-hover: hover) {
-                        &:hover {
-                            background-color: $black;
-                            color: $white;
-                            padding: 5px;
+                @media (any-hover: hover) {
+                    &:hover {
+                        background-color: $black;
+                        color: $white;
+                        padding: 5px;
+                        z-index: 3;
 
-                            img,
-                            picture {
-                                display: block;
-                            }
+                        img,
+                        picture {
+                            display: block;
                         }
                     }
+                }
 
-                    img,
-                    picture {
-                        position: absolute;
-                        left: 50%;
-                        top: 50%;
-                        transform: translate(-50%, -50%);
-                        z-index: 2;
-                        width: 200px;
-                        height: 200px;
-                        pointer-events: none;
+                img,
+                picture {
+                    position: absolute;
+                    left: 50%;
+                    top: 50%;
+                    transform: translate(-50%, -50%);
+                    z-index: 2;
+                    width: 200px;
+                    height: 200px;
+                    pointer-events: none;
+                    display: none;
+
+                    @media (any-hover: none) {
                         display: none;
-
-                        @media (any-hover: none) {
-                            display: none;
-                        }
                     }
+                }
 
-                    label {
-                        color: $grey;
+                label {
+                    color: $grey;
 
-                        @media (max-width:768px) {
-                            font-size: 12px;
-                        }
+                    @media (max-width:768px) {
+                        font-size: 12px;
                     }
                 }
             }

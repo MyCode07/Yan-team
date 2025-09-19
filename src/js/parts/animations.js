@@ -162,11 +162,16 @@ class TextAnimator {
 
     // Подготовка отдельного элемента
     prepareTextElement(element, text) {
+        text = text.replace(/\s+/g, ' ');
+
         const words = text.split(' ');
 
         words.forEach((word, wordIndex) => {
             const wordSpan = document.createElement('span');
             wordSpan.className = 'word';
+
+            console.log(word);
+
 
             word.split('').forEach(letter => {
                 const letterSpan = document.createElement('span');
@@ -176,6 +181,8 @@ class TextAnimator {
                 letterSpan.style.display = 'inline-block';
                 wordSpan.appendChild(letterSpan);
             });
+
+            wordSpan.insertAdjacentHTML('beforeend','<span class="letter">&nbsp</span>');
 
             element.appendChild(wordSpan);
 

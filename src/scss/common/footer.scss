@@ -2,7 +2,6 @@
     padding: 12px 0;
     background-color: $accent;
     position: relative;
-    min-height: 100vh;
 
     @media (max-width:1024px) {
         padding: 10px 0;
@@ -31,7 +30,7 @@
         gap: 60px;
         position: relative;
         z-index: 1;
-        min-height: 100%;
+        min-height: 100vh;
 
         @media (max-width:1024px) {
             gap: 70px;

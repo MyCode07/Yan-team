@@ -7,16 +7,26 @@
         padding: 10px 0;
     }
 
-    // .footer__bgi
-    &__bgi {
+    .gradient-bg {
+        width: 100%;
+        height: 100%;
+        background: radial-gradient(circle at 50% 50%, #0012ff, #000000);
+        background-size: 200% 200%;
         position: absolute;
         top: 0;
         left: 0;
+    }
+
+    // .footer__bgi
+    &__bgi {
+        position: absolute;
+        left: 0;
+        top: 0;
         width: 100%;
         height: 100%;
+        pointer-events: none;
+        mix-blend-mode: hard-light;
         object-fit: cover;
-        object-position: top;
-        mix-blend-mode: multiply;
     }
 
     // .footer__container

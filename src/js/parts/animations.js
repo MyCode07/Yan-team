@@ -118,8 +118,6 @@ function animateSVG(elem, i) {
         ease: 'ease',
         stagger: 0.3,
     });
-    console.log(1);
-
 }
 
 const animateSVGElems = document.querySelectorAll('[data-animate-svg]');
@@ -169,9 +167,6 @@ class TextAnimator {
         words.forEach((word, wordIndex) => {
             const wordSpan = document.createElement('span');
             wordSpan.className = 'word';
-
-            console.log(word);
-
 
             word.split('').forEach(letter => {
                 const letterSpan = document.createElement('span');
@@ -416,3 +411,31 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 // конец анимации Hero
+
+
+// начало анимации Footer
+
+const bg = document.querySelector(".gradient-bg");
+
+// --- Базовая бесконечная анимация ---
+gsap.to(bg, {
+    duration: 20,
+    backgroundPosition: "100% 100%",
+    ease: "sine.inOut",
+    repeat: -1,
+    yoyo: true
+});
+
+// --- Реакция на мышь ---
+document.addEventListener("mousemove", (e) => {
+    const x = (e.clientX / window.innerWidth) * 100;
+    const y = (e.clientY / window.innerHeight) * 100;
+
+    gsap.to(bg, {
+        duration: 1.5,
+        backgroundPosition: `${x}% ${y}%`,
+        ease: "power3.out"
+    });
+});
+
+// конец анимации Footer

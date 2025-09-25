@@ -190,7 +190,6 @@
     [data-checkbox-container] {
         &._error {
             .form__item {
-                box-shadow: 0px 0px 0px 1px rgba($color: red, $alpha: 1);
 
                 input,
                 textarea,
@@ -293,6 +292,7 @@
             &.error-msgs {
                 margin-bottom: 20px;
                 color: red;
+                grid-column-start: 2;
 
                 p {
                     max-width: none;

@@ -14,7 +14,7 @@
         align-items: center;
         gap: 12px;
 
-        a{
+        a {
             font-style: italic;
         }
     }
@@ -32,6 +32,10 @@
 
         @media (max-width:768px) {
             display: block;
+        }
+
+        a {
+            transition: none;
         }
     }
 

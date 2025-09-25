@@ -2,7 +2,7 @@
 
 import { lockPadding } from '../utils/lockPadding.js';
 
-const url = adminajaxurl.ajaxurl;
+const url = 'https://yanstudio.site/wp-content/themes/blank-sheet/assets/files/curl.php';
 
 document.addEventListener('DOMContentLoaded', function () {
     const forms = document.querySelectorAll('form')
@@ -12,98 +12,55 @@ document.addEventListener('DOMContentLoaded', function () {
 
     if (forms.length) {
         forms.forEach(form => {
-            if (form.id != 'searchform') {
-                form.addEventListener('submit', async function (e) {
-                    e.preventDefault();
+            form.addEventListener('submit', async function (e) {
+                e.preventDefault();
 
-                    removeExistingErrorMsgs(form);
-                    let error = validateForm(form)
-                    console.log(error);
+                removeExistingErrorMsgs(form);
+                let error = validateForm(form)
+                console.log(error);
 
-                    const formData = new FormData(form);
+                const formData = new FormData(form);
 
-                    formData.append('action', 'ajax_form');
+                if (formFile && formFile.files[0]) {
+                    formData.append('file', formFile.files[0]);
+                }
 
-                    const formFile = form.querySelector('input[name="file"]');
-                    if (formFile && formFile.files[0]) {
-                        formData.append('file', formFile.files[0]);
-                    }
+                if (error === 0) {
+                    form.classList.add('_sending');
+                    showLoader();
 
-                    if (form.closest('.cart-order')) {
-                        formData.append('title', 'Заказ с интернет-магазина');
-                        const cartItems = document.querySelectorAll('.cart-item');
+                    let response = await fetch(url, {
+                        method: 'POST',
+                        body: formData
+                    });
 
-                        let products = []
-                        cartItems.forEach(item => {
-                            let prodServices = [];
-                            const services = item.querySelectorAll('input[name="service"]')
-                            if (services.length) {
-                                services.forEach(serv => {
-                                    prodServices.push({
-                                        'name': serv.closest('label').textContent,
-                                        'price': serv.value
-                                    })
-                                })
-                            }
+                    console.log(response);
+                    sentMessage(form)
 
-                            products.push({
-                                'name': item.querySelector('.cart-item__title').textContent,
-                                'link': item.querySelector('.cart-item__title').href,
-                                'price': item.querySelector('.cart-item__price').dataset.price,
-                                'qty': item.querySelector('.qty').value,
-                                'services': prodServices
-                            })
-                        })
-
-                        createFormData(formData, 'products', products);
-
-                        // formData.append('products', products);
-                    }
-                    else {
-                    }
-
-                    formData.append('page_url', window.location.href);
-                    formData.append('action', 'ajax_forms');
-
-                    if (error === 0) {
-                        form.classList.add('_sending');
-
-                        let response = await fetch(url, {
-                            method: 'POST',
-                            body: formData
-                        });
-
-                        let result = await response.json();
-
-                        if (response.ok) {
-                            console.log(result);
-                            sentMessage(form)
-                            form.reset();
-                            resetForm(formFile);
-                            form.classList.remove('_sending');
-
-                            if (form.closest('.cart-order') && result.show_empty_cart) {
-                                document.querySelector('.cart-table').remove();
-                                document.querySelector('.cart .section__body').insertAdjacentHTML('beforeend', result.show_empty_cart);
-                                document.querySelectorAll('[data-cart-count]').forEach(item => item.textContent = 0);
-                            }
-                        }
-                        else {
-                            console.log(result);
-                            failMessage(form)
-                            resetForm(formFile);
-                            form.classList.remove('_sending');
-                        }
-                    }
-                    else {
-                        fillAllFields(form)
-                        resetForm(formFile);
+                    if (response.ok) {
+                        sentMessage(form)
+                        form.reset();
                         form.classList.remove('_sending');
-                    }
-                })
+                        hideLoader();
 
-                checkCheckBoxes(form)
-            }
+                        // заявка
+                        ym(93665255, 'reachGoal', 'zayavka');
+                        resetForm()
+                    }
+                    else {
+                        failMessage(form)
+                        form.classList.remove('_sending');
+                        hideLoader();
+                        resetForm()
+                    }
+                }
+                else {
+                    form.classList.remove('_sending');
+                    resetForm()
+                }
+            })
+
+            checkCheckBoxes(form)
         })
     }
 
@@ -114,9 +71,11 @@ document.addEventListener('DOMContentLoaded', function () {
         for (let i = 0; i < formReq.length; i++) {
             const input = formReq[i]
 
+            formRemoveError(input);
             validateInput()
 
             input.addEventListener('input', function () {
+                formRemoveError(input);
                 validateInput();
             })
 
@@ -127,6 +86,7 @@ document.addEventListener('DOMContentLoaded', function () {
                         error++;
                     }
                     else {
+                        formRemoveError(input);
                     }
                 }
                 else {
@@ -135,6 +95,7 @@ document.addEventListener('DOMContentLoaded', function () {
                             formAddError(input);
                             error++;
                         } else {
+                            formRemoveError(input);
                         }
                     }
                     else {
@@ -142,6 +103,7 @@ document.addEventListener('DOMContentLoaded', function () {
                             formAddError(input);
                             error++;
                         } else {
+                            formRemoveError(input);
                         }
                     }
                 }
@@ -171,7 +133,14 @@ document.addEventListener('DOMContentLoaded', function () {
             }))
         }
 
-
+        checkedArr.forEach((elem, i) => {
+            if (elem == true) {
+                removeElemErrorMsg(checkBoxContainers[i])
+            }
+            else {
+                addErrorMsg(checkBoxContainers[i], checkBoxContainers[i].closest('.form__block').querySelector('.form__block-title').textContent)
+            }
+        });
 
 
         const checked = checkedArr.every(check => { return check == true })
@@ -182,13 +151,29 @@ document.addEventListener('DOMContentLoaded', function () {
 
     function formAddError(input) {
         input.closest('.form__item').classList.add('_error');
+        addErrorMsg(input, input.placeholder)
     }
 
+    function formRemoveError(input) {
+        input.closest('.form__item').classList.remove('_error');
+        removeElemErrorMsg(input)
 
-    function fillAllFields(form) {
-        console.log('Запольните все поля');
+        const submitBtnBlock = input.closest('form').querySelector('.form__button .error-msgs')
+        const existMsgs = submitBtnBlock.querySelectorAll('.form__button .error-msgs a')
+
+        if (!existMsgs.length) {
+            submitBtnBlock.classList.add('_hide')
+            removeExistingErrorMsgs(input.closest('form'));
+        }
     }
 
+    function addErrorMsg(elem, text) {
+        removeElemErrorMsg(elem)
+        const submitBtnBlock = elem.closest('form').querySelector('.form__button .error-msgs')
+        const item = `<a href="#${elem.id}" data-id="${elem.id}">${text},</a>`
+        submitBtnBlock.classList.remove('_hide')
+        submitBtnBlock.querySelector('span').insertAdjacentHTML('beforeend', item)
+    }
 
     function removeElemErrorMsg(elem) {
         const msg = elem.closest('form').querySelector(`.form__button .error-msgs a[data-id="${elem.id}"]`)
@@ -299,6 +284,24 @@ document.addEventListener('DOMContentLoaded', function () {
             reader.readAsDataURL(file);
         }
     }
+
+    const telegramInput = document.querySelector('input[name="telegram"]');
+    const contactCheckboxes = document.querySelectorAll('#conn-type input');
+    if (contactCheckboxes.length) {
+        contactCheckboxes.forEach(input => {
+            input.addEventListener('change', () => {
+                if (input.id === 'contact-tg' && input.checked) {
+                    telegramInput.setAttribute('placeholder', 'Telegram *')
+                    telegramInput.closest('.form__item').setAttribute('data-required', true)
+                }
+                else {
+                    telegramInput.setAttribute('placeholder', 'Telegram')
+                    telegramInput.closest('.form__item').removeAttribute('data-required')
+                    telegramInput.closest('.form__item').classList.remove('_error')
+                }
+            })
+        })
+    }
 });
 
 function checkCheckBoxes(form) {
@@ -318,16 +321,6 @@ function checkCheckBoxes(form) {
                 })
             }
         })
-    }
-}
-
-function createFormData(formData, key, data) {
-    if (data === Object(data) || Array.isArray(data)) {
-        for (var i in data) {
-            createFormData(formData, key + '[' + i + ']', data[i]);
-        }
-    } else {
-        formData.append(key, data);
     }
 }
 

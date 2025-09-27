@@ -1,14 +1,11 @@
-
 import { gsap } from 'gsap'
 
-// начало анимации текстов
 class TextAnimator {
     constructor() {
         this.animatedElements = new Map();
         this.observer = null;
     }
 
-    // Инициализация
     initialize() {
         this.prepareAllTextElements();
         this.setupIntersectionObserver();
@@ -18,6 +15,8 @@ class TextAnimator {
     // Подготовка всех текстовых элементов
     prepareAllTextElements() {
         const textElements = document.querySelectorAll('[data-animate-text]');
+
+        if (!textElements.length) return
 
         textElements.forEach((element, index) => {
             const originalText = element.textContent;
@@ -140,21 +139,13 @@ class TextAnimator {
         });
     }
 }
-
-// Инициализация после загрузки DOM
-document.addEventListener('DOMContentLoaded', function () {
-    const textAnimator = new TextAnimator();
-    textAnimator.initialize();
-});
-
-// конец анимации текстов
+const textAnimator = new TextAnimator();
+textAnimator.initialize();
 
 
-// начало анимации заливки бордеров
-
-document.addEventListener("DOMContentLoaded", () => {
-    const sections = document.querySelectorAll(".border-top, .border-bottom");
-
+// border animation
+const sections = document.querySelectorAll(".border-top, .border-bottom");
+if (sections.length) {
     const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
@@ -164,13 +155,12 @@ document.addEventListener("DOMContentLoaded", () => {
     }, { threshold: 0.3 });
 
     sections.forEach(section => observer.observe(section));
-});
+}
 
-// конец анимации заливки бордеров
 
-// начало анимации Заголовков
-
-document.addEventListener('DOMContentLoaded', () => {
+// ttile line animation
+const animTitleElems = document.querySelectorAll('.anim-title-line');
+if (animTitleElems.length) {
 
     const ANIM_CONFIG = {
         start: {
@@ -185,28 +175,9 @@ document.addEventListener('DOMContentLoaded', () => {
         },
         duration: 1.2,
         ease: 'power3.out',
-        lineDelay: 0.15, // задержка между строками
+        lineDelay: 0.15,
         threshold: 0.1
     };
-
-    const animElements = document.querySelectorAll('.anim-title-line');
-
-    if (typeof gsap === 'undefined') {
-        animElements.forEach(el => {
-            el.style.opacity = '1';
-            el.style.transform = 'none';
-        });
-        return;
-    }
-
-    // Правильная установка начального состояния
-    animElements.forEach((el, index) => {
-        gsap.set(el, {
-            y: ANIM_CONFIG.start.y,
-            rotationX: ANIM_CONFIG.start.rotationX,
-            opacity: ANIM_CONFIG.start.opacity
-        });
-    });
 
     const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
@@ -214,7 +185,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 const lines = entry.target.closest('h1, h2, h3').querySelectorAll('.anim-title-line');
 
                 lines.forEach((line, lineIndex) => {
-                    // Анимируем каждую строку с задержкой
                     gsap.to(line, {
                         y: ANIM_CONFIG.end.y,
                         rotationX: ANIM_CONFIG.end.rotationX,
@@ -233,80 +203,79 @@ document.addEventListener('DOMContentLoaded', () => {
         threshold: ANIM_CONFIG.threshold
     });
 
-    animElements.forEach(el => {
+    animTitleElems.forEach((el, index) => {
+        el.style.opacity = '1';
+        el.style.transform = 'none';
+
+        gsap.set(el, {
+            y: ANIM_CONFIG.start.y,
+            rotationX: ANIM_CONFIG.start.rotationX,
+            opacity: ANIM_CONFIG.start.opacity
+        });
+
         observer.observe(el);
     });
-
-});
-
-// конец анимации Заголовков
-
-// начало анимации Hero
-
-document.addEventListener("DOMContentLoaded", () => {
-    const tl = gsap.timeline({
-        defaults: {
-            ease: "power3.out",
-            duration: 0.6
-        }
-    });
-
-    // 1. Шапка
-    tl.from("header, .header, .top-nav, .black-bar", {
-        clipPath: "inset(0 100% 0 0)",
-        duration: 0.7,
-        stagger: 0.07
-    });
-
-    // 2. Подзаголовок
-    tl.from(".hero .section__content p", {
-        y: 20,
-        opacity: 0
-    }, "-=0.3");
-
-    // 3. Кнопка — рост снизу вверх через scaleY
-    tl.from(".hero ._btn", {
-        clipPath: "inset(100% 0 0 0)",
-        duration: 0.6,
-        ease: "power2.out",
-        transformOrigin: "bottom"
-    }, "-=0.2");
-
-    // 4. Логотип (заливка снизу вверх)
-    tl.from(".hero .section__bottom img", {
-        clipPath: "inset(100% 0 0 0)",
-        duration: 0.6,
-        ease: "power2.out"
-    }, "0.2");
-
-});
-
-// конец анимации Hero
+}
 
 
-// начало анимации Footer
 
+// footer bg aniamtion
 const bg = document.querySelector(".gradient-bg");
-
-// --- Базовая бесконечная анимация ---
-gsap.to(bg, {
-    duration: 20,
-    backgroundPosition: "100% 100%",
-    ease: "sine.inOut",
-    repeat: -1,
-    yoyo: true
-});
-
-// --- Реакция на мышь ---
-document.addEventListener("mousemove", (e) => {
-    const x = (e.clientX / window.innerWidth) * 100;
-    const y = (e.clientY / window.innerHeight) * 100;
-
+if (bg) {
     gsap.to(bg, {
-        duration: 1.5,
-        backgroundPosition: `${x}% ${y}%`,
-        ease: "power3.out"
+        duration: 20,
+        backgroundPosition: "100% 100%",
+        ease: "sine.inOut",
+        repeat: -1,
+        yoyo: true
     });
-});
 
-// конец анимации Footer
+    document.addEventListener("mousemove", (e) => {
+        const x = (e.clientX / window.innerWidth) * 100;
+        const y = (e.clientY / window.innerHeight) * 100;
+
+        gsap.to(bg, {
+            duration: 1.5,
+            backgroundPosition: `${x}% ${y}%`,
+            ease: "power3.out"
+        });
+    });
+}
+
+
+// Создание таймлайна для сложных анимаций
+const tl = gsap.timeline();
+
+const items = [
+    ...document.querySelectorAll('.header__body ul li'),
+    ...document.querySelectorAll('.hero h1 span'),
+    ...document.querySelectorAll('.hero__portfolio a'),
+    ...document.querySelectorAll('.hero ._small-uppercase'),
+    document.querySelector('.hero ._btn'),
+]
+
+if (document.querySelector('.hero .img')) {
+    tl.to('.hero .img', {
+        opacity: 1,
+        duration: 0.6,
+        ease: "power3.out"
+    })
+        .to('.hero .img', {
+            delay: 0.4,
+            y: 0,
+            duration: 0.75,
+            ease: "power3.out"
+        })
+        .to(items, {
+            clipPath: "inset(0% 0% 0% 0%)",
+            duration: 0.75,
+            ease: "power3.out"
+        })
+}
+else {
+    tl.to(items, {
+        clipPath: "inset(0% 0% 0% 0%)",
+        duration: 0.75,
+        ease: "power3.out"
+    })
+}

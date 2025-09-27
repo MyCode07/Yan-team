@@ -62,3 +62,23 @@
     transform-origin: bottom center;
     will-change: transform, opacity;
 }
+
+.header__body ul li,
+.hero h1 span,
+.hero ._small-uppercase,
+.hero__portfolio a {
+    clip-path: inset(0% 100% 0% 0%);
+}
+
+.hero ._btn {
+    clip-path: inset(100% 0% 0% 0%);
+}
+
+.hero .img {
+    transform: translate(0, -100%);
+    opacity: 0;
+
+    @media (max-width:768px) {
+        transform: translate(0, -150%);
+    }
+}

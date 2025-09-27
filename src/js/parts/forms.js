@@ -2,7 +2,7 @@
 
 import { lockPadding } from '../utils/lockPadding.js';
 
-const url = 'https://yanstudio.site/wp-content/themes/blank-sheet/assets/files/curl.php';
+const url = 'https://yanstudio.site/wp-content/themes/blank-sheet/assets/curl.php';
 
 document.addEventListener('DOMContentLoaded', function () {
     const forms = document.querySelectorAll('form')

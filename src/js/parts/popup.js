@@ -1,8 +1,5 @@
-import { isMobile } from "../utils/isMobile.js";
 import { lockPadding, unLockPadding } from "../utils/lockPadding.js";
 
-// const wrapper = document.querySelector('.wrapper');
-const partnershipPopup = document.querySelector('.popup#main');
 
 document.addEventListener('click', function (e) {
     let targetEl = e.target;
@@ -14,8 +11,6 @@ document.addEventListener('click', function (e) {
 
         if (popup) {
             popup.classList.add('_open')
-            // wrapper.classList.add('_overlay')
-
             lockPadding();
         }
     }
@@ -25,7 +20,7 @@ document.addEventListener('click', function (e) {
         closePopup(targetEl)
     }
 
-    if (targetEl.classList.contains('popup__close') || targetEl.hasAttribute('data-close-popup') || (targetEl.classList.contains('_container') && targetEl.closest('.popup-msg'))) {
+    if (targetEl.classList.contains('popup__close') || targetEl.hasAttribute('data-close-popup')) {
         const popup = targetEl.closest('.popup');
         closePopup(popup)
     }
@@ -34,12 +29,5 @@ document.addEventListener('click', function (e) {
 
 function closePopup(popup) {
     popup.classList.remove('_open')
-
-    if (popup.id != partnershipPopup.id && partnershipPopup.classList.contains('_open')) {
-        //
-    }
-    else {
-        // wrapper.classList.remove('_overlay')
-        unLockPadding();
-    }
+    unLockPadding();
 }

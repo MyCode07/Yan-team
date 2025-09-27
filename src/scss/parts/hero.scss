@@ -84,17 +84,22 @@
             }
         }
 
-        img,
-        picture,
-        svg {
+        .img {
             display: block;
             width: 100%;
-            object-fit: contain;
             pointer-events: none;
             margin-top: 24px;
 
             @media (max-width:1024px) {
                 margin-top: 5px;
+            }
+
+            img,
+            picture,
+            svg {
+                display: block;
+                width: 100%;
+                object-fit: contain;
             }
         }
     }

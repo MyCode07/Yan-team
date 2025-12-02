@@ -12,3 +12,7 @@ import "./parts/animate.js";
 import "./parts/forms.js";
 import "./parts/popup.js";
 import "./parts/menu.js";
+
+
+// удалить не связано
+// import "./parts/test.js";

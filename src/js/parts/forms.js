@@ -2,7 +2,7 @@
 
 import { lockPadding } from '../utils/lockPadding.js';
 
-const url = 'https://yanstudio.site/wp-content/themes/blank-sheet/assets/curl.php';
+const url = 'https://yanteam.ru/wp-content/themes/blank-sheet/assets/curl.php';
 
 document.addEventListener('DOMContentLoaded', function () {
     const forms = document.querySelectorAll('form')
@@ -35,7 +35,6 @@ document.addEventListener('DOMContentLoaded', function () {
                     });
 
                     console.log(response);
-                    sentMessage(form)
 
                     if (response.ok) {
                         sentMessage(form)
@@ -323,7 +322,6 @@ function checkCheckBoxes(form) {
         })
     }
 }
-
 
 const fileDeleteBtn = document.querySelector('._delete-file');
 if (fileDeleteBtn) {
